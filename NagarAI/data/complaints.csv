@@ -1,0 +1,37 @@
+complaint,category
+There is a large pothole on the main road,Road Damage
+The road near the school is badly broken,Road Damage
+Several potholes are making the street dangerous,Road Damage
+The street surface has deep cracks,Road Damage
+The road is damaged after heavy rain,Road Damage
+The main street has many potholes,Road Damage
+Street light is not working near the market,Streetlight
+The road becomes completely dark at night,Streetlight
+The lamp post near my house is broken,Streetlight
+Several streetlights are not working,Streetlight
+The street light has been off for a week,Streetlight
+There is no lighting near the bus stop,Streetlight
+Garbage has not been collected for three days,Garbage
+The dustbins are overflowing in our colony,Garbage
+Trash is lying on the road,Garbage
+Waste collection has stopped in our area,Garbage
+The garbage dump is creating a bad smell,Garbage
+Rubbish is scattered near the park,Garbage
+The drain is overflowing near our street,Drainage
+Sewage water is entering the road,Drainage
+There is waterlogging because the drain is blocked,Drainage
+The sewer line appears to be blocked,Drainage
+Rainwater cannot leave because the drainage is blocked,Drainage
+The drain cover is damaged and unsafe,Drainage
+Water supply has stopped since morning,Water Supply
+There is very low water pressure in our area,Water Supply
+A water pipeline is leaking on the street,Water Supply
+The public tap is not working,Water Supply
+Our colony is not receiving municipal water,Water Supply
+The water pipe near the school is broken,Water Supply
+The park bench is broken,Public Property
+The public toilet needs repair,Public Property
+The playground equipment is damaged,Public Property
+The park gate is broken,Public Property
+The community hall has damaged windows,Public Property
+The public property needs maintenance,Public Property

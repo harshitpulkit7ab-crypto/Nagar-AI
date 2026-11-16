@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="hero p-5 mb-4">
+    <div class="row align-items-center">
+        <div class="col-lg-8">
+            <h1 class="display-5 fw-bold">Smart Public Infrastructure & Governance</h1>
+            <p class="lead mb-4">AI-assisted complaint classification, transparent priority scoring, and municipal monitoring.</p>
+            <a href="{{ url_for('submit') }}" class="btn btn-light btn-lg">Submit a Complaint</a>
+        </div>
+        <div class="col-lg-4 text-center mt-4 mt-lg-0">
+            <div class="bg-white text-dark rounded-4 p-4">
+                <div class="fs-1 fw-bold">{{ critical }}</div>
+                <div class="small-muted">Critical issues</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-3"><div class="card stat-card p-3"><div class="small-muted">Total</div><div class="fs-2 fw-bold">{{ total }}</div></div></div>
+    <div class="col-md-3"><div class="card stat-card p-3"><div class="small-muted">Open / Pending</div><div class="fs-2 fw-bold">{{ pending }}</div></div></div>
+    <div class="col-md-3"><div class="card stat-card p-3"><div class="small-muted">Resolved</div><div class="fs-2 fw-bold">{{ resolved }}</div></div></div>
+    <div class="col-md-3"><div class="card stat-card p-3"><div class="small-muted">Critical</div><div class="fs-2 fw-bold">{{ critical }}</div></div></div>
+</div>
+
+<div class="row g-4">
+    <div class="col-lg-5">
+        <div class="card panel p-4 h-100">
+            <h4>Top issue categories</h4>
+            {% if categories %}
+                {% for item in categories %}
+                    <div class="d-flex justify-content-between border-bottom py-2">
+                        <span>{{ item["category"] }}</span>
+                        <strong>{{ item["count"] }}</strong>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="small-muted">No complaints yet. Submit the first one.</p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-lg-7">
+        <div class="card panel p-4">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h4 class="mb-0">Recent complaints</h4>
+                <a href="{{ url_for('complaints') }}">View all</a>
+            </div>
+            {% if recent %}
+            <div class="table-responsive">
+                <table class="table align-middle">
+                    <thead><tr><th>ID</th><th>Issue</th><th>Priority</th><th>Status</th></tr></thead>
+                    <tbody>
+                    {% for row in recent %}
+                        <tr>
+                            <td>#{{ row["id"] }}</td>
+                            <td>
+                                <div class="fw-semibold">{{ row["category"] }}</div>
+                                <div class="small-muted">{{ row["complaint"][:75] }}{% if row["complaint"]|length > 75 %}...{% endif %}</div>
+                            </td>
+                            <td class="priority-{{ row['priority'] }}">{{ row["priority"] }}</td>
+                            <td>{{ row["status"] }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% else %}
+                <p class="small-muted">No complaints have been submitted yet.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

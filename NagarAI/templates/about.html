@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card panel p-5">
+    <h2>NagarAI</h2>
+    <p class="lead">AI-assisted public infrastructure monitoring and governance decision support.</p>
+
+    <h5 class="mt-4">How the system works</h5>
+    <ol>
+        <li>A citizen submits a civic complaint.</li>
+        <li>The NLP model predicts a complaint category.</li>
+        <li>A transparent scoring engine estimates priority using severity, public impact, and affected population.</li>
+        <li>The complaint enters the dashboard for human review.</li>
+        <li>An authorized official updates the case until it is resolved.</li>
+    </ol>
+
+    <div class="alert alert-warning mt-4">
+        This prototype is designed for decision support. AI output should be reviewed by authorized officials and should not be the sole basis for high-impact public decisions.
+    </div>
+</div>
+{% endblock %}

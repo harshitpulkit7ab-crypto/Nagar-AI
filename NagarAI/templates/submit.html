@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+<div class="col-lg-8">
+<div class="card panel p-4">
+    <h2 class="mb-1">Report a Public Infrastructure Issue</h2>
+    <p class="small-muted mb-4">The AI will classify the complaint and recommend a priority level.</p>
+
+    <form method="POST">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label">Citizen name *</label>
+                <input class="form-control" name="citizen_name" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Phone</label>
+                <input class="form-control" name="phone">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Email</label>
+                <input class="form-control" type="email" name="email">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Location / Area</label>
+                <input class="form-control" name="location" placeholder="e.g. Daliganj">
+            </div>
+
+            <div class="col-12">
+                <label class="form-label">Complaint *</label>
+                <textarea class="form-control" rows="5" name="complaint" required placeholder="Describe the infrastructure problem clearly..."></textarea>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Severity (1–5)</label>
+                <select class="form-select" name="severity">
+                    <option value="1">1 - Minor</option>
+                    <option value="2">2</option>
+                    <option value="3" selected>3 - Moderate</option>
+                    <option value="4">4</option>
+                    <option value="5">5 - Severe</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Public impact (1–5)</label>
+                <select class="form-select" name="public_impact">
+                    <option value="1">1 - Very low</option>
+                    <option value="2">2</option>
+                    <option value="3" selected>3 - Moderate</option>
+                    <option value="4">4</option>
+                    <option value="5">5 - Very high</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Affected people (1–5)</label>
+                <select class="form-select" name="affected_people">
+                    <option value="1">1 - Few</option>
+                    <option value="2">2</option>
+                    <option value="3" selected>3 - Some</option>
+                    <option value="4">4</option>
+                    <option value="5">5 - Many</option>
+                </select>
+            </div>
+        </div>
+
+        <button class="btn btn-primary mt-4">Analyze & Submit</button>
+    </form>
+</div>
+</div>
+</div>
+{% endblock %}

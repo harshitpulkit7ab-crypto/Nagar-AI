@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card panel p-4">
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+        <div>
+            <h2 class="mb-1">Complaint Management</h2>
+            <div class="small-muted">Review AI classification and update resolution status.</div>
+        </div>
+        <a class="btn btn-primary" href="{{ url_for('submit') }}">New Complaint</a>
+    </div>
+
+    <form class="row g-2 mb-4">
+        <div class="col-md-4">
+            <select class="form-select" name="status">
+                <option value="">All statuses</option>
+                <option {% if selected_status == "Pending" %}selected{% endif %}>Pending</option>
+                <option {% if selected_status == "In Progress" %}selected{% endif %}>In Progress</option>
+                <option {% if selected_status == "Resolved" %}selected{% endif %}>Resolved</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <select class="form-select" name="category">
+                <option value="">All categories</option>
+                {% for c in categories %}
+                <option value="{{ c }}" {% if selected_category == c %}selected{% endif %}>{{ c }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-2"><button class="btn btn-outline-primary w-100">Filter</button></div>
+        <div class="col-md-2"><a class="btn btn-outline-secondary w-100" href="{{ url_for('complaints') }}">Clear</a></div>
+    </form>
+
+    <div class="table-responsive">
+    <table class="table table-hover align-middle">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Citizen</th>
+                <th>Complaint</th>
+                <th>AI</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for row in complaints %}
+            <tr>
+                <td>#{{ row["id"] }}</td>
+                <td>
+                    <div class="fw-semibold">{{ row["citizen_name"] }}</div>
+                    <div class="small-muted">{{ row["location"] or "Location not given" }}</div>
+                </td>
+                <td style="min-width:260px">{{ row["complaint"] }}</td>
+                <td>
+                    <div>{{ row["category"] }}</div>
+                    <div class="small-muted">{{ "%.0f"|format(row["confidence"] * 100) }}% confidence</div>
+                </td>
+                <td class="priority-{{ row['priority'] }}">{{ row["priority"] }}</td>
+                <td>{{ row["status"] }}</td>
+                <td>
+                    <form method="POST" action="{{ url_for('update_status', complaint_id=row['id']) }}">
+                        <select name="status" class="form-select form-select-sm mb-1">
+                            {% for s in ["Pending", "In Progress", "Resolved"] %}
+                            <option {% if row["status"] == s %}selected{% endif %}>{{ s }}</option>
+                            {% endfor %}
+                        </select>
+                        <button class="btn btn-sm btn-outline-success w-100">Save</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr><td colspan="7" class="text-center py-5 small-muted">No complaints found.</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</div>
+{% endblock %}
